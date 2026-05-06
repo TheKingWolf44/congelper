@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "513171410508",
-    "project_id": "congelper",
-    "storage_bucket": "congelper.firebasestorage.app"
+    "project_id": "fantafriends",
+    "storage_bucket": "fantafriends.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:513171410508:android:d9736ad147490c62d12ee9",
         "android_client_info": {
-          "package_name": "com.example.congelper"
+          "package_name": "com.example.fantafriends"
         }
       },
       "oauth_client": [],

@@ -1,6 +1,6 @@
-import 'dart:io';
+// import 'dart:io';
 
-import 'package:congelper/utils/images.dart';
+// import 'package:fantafriends/utils/images.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends State<CategoryCardWidget> {
@@ -26,8 +26,8 @@ class CategoryCard extends State<CategoryCardWidget> {
                 children: [
                   // Icona in alto a sinistra
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: 30,
+                    height: 30,
                     decoration: BoxDecoration(
                       color: color, // Sfondo bianco per l'icona
                       shape: BoxShape.circle, // Forma circolare
@@ -62,7 +62,7 @@ class CategoryCard extends State<CategoryCardWidget> {
                 overflow: TextOverflow.ellipsis, // Gestisce il testo lungo
               ),
 
-              const SizedBox(height: 10), // Spazio tra titolo e sottotitolo
+              const SizedBox(height: 5), // Spazio tra titolo e sottotitolo
               // Sottotitolo
               Flexible(
                 child: Text(
