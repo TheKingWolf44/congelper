@@ -1,6 +1,6 @@
-import 'package:fantafriends/app/customWidgets/categoryCard.dart';
-import 'package:fantafriends/app/scommesse.dart';
-import 'package:fantafriends/app/utils/images.dart';
+import 'package:fantafriends/customWidgets/categoryCard.dart';
+import 'package:fantafriends/scommesse.dart';
+import 'package:fantafriends/utils/images.dart';
 import 'package:flutter/material.dart';
 
 import 'customWidgets/CustomDialog.dart';

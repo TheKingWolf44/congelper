@@ -1,8 +1,8 @@
-import 'package:fantafriends/app/home.dart';
-import 'package:fantafriends/app/scommesse.dart';
-import 'package:fantafriends/app/utenti.dart';
-import 'package:fantafriends/app/utils/images.dart';
-import 'package:fantafriends/app/customWidgets/CustomDialog.dart';
+import 'package:fantafriends/home.dart';
+import 'package:fantafriends/scommesse.dart';
+import 'package:fantafriends/utenti.dart';
+import 'package:fantafriends/utils/images.dart';
+// import 'package:fantafriends/app/customWidgets/CustomDialog.dart';
 import 'package:flutter/material.dart';
 
 List<String> _messages = [];
