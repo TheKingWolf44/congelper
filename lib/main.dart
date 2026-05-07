@@ -5,8 +5,6 @@ import 'package:fantafriends/utils/images.dart';
 // import 'package:fantafriends/app/customWidgets/CustomDialog.dart';
 import 'package:flutter/material.dart';
 
-List<String> _messages = [];
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
