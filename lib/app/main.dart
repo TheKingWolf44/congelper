@@ -2,6 +2,7 @@ import 'package:fantafriends/app/home.dart';
 import 'package:fantafriends/app/scommesse.dart';
 import 'package:fantafriends/app/utenti.dart';
 import 'package:fantafriends/app/utils/images.dart';
+import 'package:fantafriends/app/customWidgets/CustomDialog.dart';
 import 'package:flutter/material.dart';
 
 List<String> _messages = [];
@@ -44,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const Scommesse(),
     const Home(),
     const Utenti(),
+    // const CustomDialogBox(
+    //     title: 'PROVAA', descriptions: 'PROVA', text: 'PROVA'),
   ];
 
   int _selectedIndex = 1;
@@ -114,6 +117,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               label: "Utenti",
             ),
+            // BottomNavigationBarItem(
+            //   icon: ColorFiltered(
+            //     colorFilter: ColorFilter.mode(
+            //       _selectedIndex == 3 ? Colors.orange : Colors.white,
+            //       BlendMode.srcIn,
+            //     ),
+            //     child: Image.asset(Images.users, width: 24, height: 24),
+            //   ),
+            //   label: "Popup",
+            // ),
           ],
         ),
       ),

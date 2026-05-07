@@ -3,6 +3,8 @@ import 'package:fantafriends/app/scommesse.dart';
 import 'package:fantafriends/app/utils/images.dart';
 import 'package:flutter/material.dart';
 
+import 'customWidgets/CustomDialog.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -96,19 +98,37 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
+                    // CategoryCardWidget(
+                    //   text: "Statistiche",
+                    //   description: "Qual è il tuo andamento?",
+                    //   icon: Image.asset(Images.statistics),
+                    //   color: Colors.yellowAccent,
+                    //   onTap: () {
+                    //     // Navigazione verso una nuova schermata
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => const Scommesse(),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                     CategoryCardWidget(
                       text: "Statistiche",
                       description: "Qual è il tuo andamento?",
                       icon: Image.asset(Images.statistics),
                       color: Colors.yellowAccent,
                       onTap: () {
-                        // Navigazione verso una nuova schermata
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Scommesse(),
-                          ),
-                        );
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return CustomDialogBox(
+                                title: "Custom Dialog Demo",
+                                descriptions:
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                                text: "Yes",
+                              );
+                            });
                       },
                     ),
                     CategoryCardWidget(
