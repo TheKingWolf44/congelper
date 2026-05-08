@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                     // ),
                     CategoryCardWidget(
                       text: "Statistiche",
-                      description: "Qual è il tuo andamento?",
+                      description: "Qual è il tuo andamentoo?",
                       icon: Image.asset(Images.statistics),
                       color: Colors.yellowAccent,
                       onTap: () {

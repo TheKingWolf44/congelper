@@ -123,20 +123,19 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: true, // Permette la chiusura del dialog
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) return;
-        // Logica extra se vuoi impedire la chiusura in certi casi
-      },
-      child: Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(padding),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        child: contentBox(context),
-      );
-    )
+        canPop: true, // Permette la chiusura del dialog
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
+          // Logica extra se vuoi impedire la chiusura in certi casi
+        },
+        child: Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(padding),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          child: contentBox(context),
+        ));
   }
 
   contentBox(context) {
