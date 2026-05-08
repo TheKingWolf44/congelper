@@ -35,6 +35,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   void initState() {
     super.initState();
     for (var field in widget.fields) {
+      print(field.type);
       if (field.type == DialogFieldType.text ||
           field.type == DialogFieldType.number) {
         _controllers[field.key] =
@@ -163,6 +164,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 widget.title,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
+              for (var field in widget.fields) _buildField(field),
               // SizedBox(
               //   height: 15,
               // ),
