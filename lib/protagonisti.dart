@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 // import 'customWidgets/categoryCard.dart';
 // import 'package:twoa_group/home.dart';
 
-class Utenti extends StatelessWidget {
-  const Utenti({super.key});
+class Protagonisti extends StatelessWidget {
+  const Protagonisti({super.key});
 
   // This widget is the root of your application.
   @override
@@ -15,19 +15,19 @@ class Utenti extends StatelessWidget {
         primaryColor: Colors.purple,
       ),
       debugShowCheckedModeBanner: false,
-      home: const UtentiWidget(),
+      home: const ProtagonistiWidget(),
     );
   }
 }
 
-class UtentiWidget extends StatefulWidget {
-  const UtentiWidget({super.key});
+class ProtagonistiWidget extends StatefulWidget {
+  const ProtagonistiWidget({super.key});
 
   @override
-  State<UtentiWidget> createState() => UtentiPage();
+  State<ProtagonistiWidget> createState() => ProtagonistiPage();
 }
 
-class UtentiPage extends State<UtentiWidget> {
+class ProtagonistiPage extends State<ProtagonistiWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +80,7 @@ class UtentiPage extends State<UtentiWidget> {
                               bottom: 0,
                             ),
                             child: const Text(
-                              'Utenti',
+                              'Protagonisti',
                               style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,

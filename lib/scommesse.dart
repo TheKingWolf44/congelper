@@ -24,10 +24,10 @@ class ScommesseWidget extends StatefulWidget {
   const ScommesseWidget({super.key});
 
   @override
-  State<ScommesseWidget> createState() => UtentiPage();
+  State<ScommesseWidget> createState() => ProtagonistiPage();
 }
 
-class UtentiPage extends State<ScommesseWidget> {
+class ProtagonistiPage extends State<ScommesseWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

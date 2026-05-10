@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:fantafriends/customWidgets/categoryCard.dart';
+import 'package:fantafriends/models/ScommessaModel.dart';
+import 'package:fantafriends/models/ProtagonistaModel.dart';
+import 'package:fantafriends/requests/Requests.dart';
 import 'package:fantafriends/scommesse.dart';
 import 'package:fantafriends/utils/images.dart';
 import 'package:fantafriends/utils/utils.dart';
 import 'package:flutter/material.dart';
-
-import 'customWidgets/CustomDialog.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -88,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                       text: "Scommesse",
                       description: "Vedi e crea nuovi eventi",
                       icon: Image.asset(Images.betting),
-                      color: Colors.red,
+                      color: CustomColor.hexToColor(CustomColor.scommesse),
                       onTap: () {
                         // Navigazione verso una nuova schermata
                         Navigator.push(
@@ -116,43 +119,77 @@ class _HomePageState extends State<HomePage> {
                     // ),
                     CategoryCardWidget(
                       text: "Statistiche",
-                      description: "Qual è il tuo andamentoo?",
+                      description: "Qual è il tuo andamento?",
                       icon: Image.asset(Images.statistics),
-                      color: Colors.yellowAccent,
-                      onTap: () {
-                        showDialog(
+                      color: CustomColor.statistiche,
+                      // color: CustomColor.hexToColor('#069494'),
+                      onTap: () async {
+                        final Map<String, dynamic> results = await showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return CustomDialogBox(
-                                  title: "Custom Dialog Demo",
-                                  // descriptions:
-                                  //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                                  // text: "Yes",
-                                  fields:
-                                      BuiltInDialogField.creazione_scommesse);
+                              // return CustomDialogBox(
+                              //     title: "Custom Dialog Demo",
+                              //     // descriptions:
+                              //     //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                              //     // text: "Yes",
+                              //     fields: BuiltInDialog.creazione_scommesse);
+
+                              return BuiltInDialog.creazione_scommesse;
                             });
+                        if (results != null) {
+                          ScommessaModel nuovaScommessa =
+                              ScommessaModel.fromMap(results);
+                          print("Dati ricevuti dal dialog: $results");
+                        } else {
+                          print("Dialog chiuso senza inviare dati.");
+                        }
                       },
                     ),
                     CategoryCardWidget(
-                      text: "Giocatori",
+                      text: "Protagonisti",
                       description: "Scegli su chi investire!",
                       icon: Image.asset(Images.users),
-                      color: Colors.orange,
-                      onTap: () {
-                        // Navigazione verso una nuova schermata
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Scommesse(),
-                          ),
-                        );
+                      color: CustomColor.protagonisti,
+                      // onTap: () {
+                      //   // Navigazione verso una nuova schermata
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const Scommesse(),
+                      //     ),
+                      //   );
+                      // },
+                      onTap: () async {
+                        final Map<String, dynamic> results = await showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              // return CustomDialogBox(
+                              //     title: "Custom Dialog Demo",
+                              //     // descriptions:
+                              //     //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                              //     // text: "Yes",
+                              //     fields: BuiltInDialog.creazione_scommesse);
+                              return BuiltInDialog.creazione_utente;
+                            });
+                        if (results != null) {
+                          print("Dati ricevuti dal dialog: $results");
+                          ProtagonistaModel new_user =
+                              ProtagonistaModel.fromMap(results);
+                          print(
+                              'new user to json: ${jsonEncode(new_user.toJson())}');
+                          Requests.post(APIs.createProtagonistaEndpoint,
+                              jsonEncode(new_user.toJson()));
+                        } else {
+                          print("Dialog chiuso senza inviare dati.");
+                        }
                       },
                     ),
                     CategoryCardWidget(
                       text: "Classifica",
                       description: "La tua zingara classifica",
                       icon: Image.asset(Images.ranking),
-                      color: Colors.lime,
+                      color: CustomColor.classifica,
+                      // color: CustomColor.hexToColor('#00F0FF'),
                       onTap: () {
                         // Navigazione verso una nuova schermata
                         Navigator.push(

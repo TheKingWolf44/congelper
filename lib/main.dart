@@ -1,6 +1,6 @@
 import 'package:fantafriends/home.dart';
 import 'package:fantafriends/scommesse.dart';
-import 'package:fantafriends/utenti.dart';
+import 'package:fantafriends/protagonisti.dart';
 import 'package:fantafriends/utils/images.dart';
 // import 'package:fantafriends/app/customWidgets/CustomDialog.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _screens = [
     const Scommesse(),
     const Home(),
-    const Utenti(),
+    const Protagonisti(),
     // const CustomDialogBox(
     //     title: 'PROVAA', descriptions: 'PROVA', text: 'PROVA'),
   ];
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Image.asset(Images.users, width: 24, height: 24),
               ),
-              label: "Utenti",
+              label: "Protagonisti",
             ),
             // BottomNavigationBarItem(
             //   icon: ColorFiltered(
