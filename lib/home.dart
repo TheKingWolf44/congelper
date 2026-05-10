@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fantafriends/customWidgets/categoryCard.dart';
 import 'package:fantafriends/models/ScommessaModel.dart';
 import 'package:fantafriends/models/ProtagonistaModel.dart';
+import 'package:fantafriends/protagonisti.dart';
 import 'package:fantafriends/requests/Requests.dart';
 import 'package:fantafriends/scommesse.dart';
 import 'package:fantafriends/utils/images.dart';
@@ -150,15 +151,22 @@ class _HomePageState extends State<HomePage> {
                       description: "Scegli su chi investire!",
                       icon: Image.asset(Images.users),
                       color: CustomColor.protagonisti,
-                      // onTap: () {
-                      //   // Navigazione verso una nuova schermata
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => const Scommesse(),
-                      //     ),
-                      //   );
-                      // },
+                      onTap: () {
+                        // Navigazione verso una nuova schermata
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Protagonisti(),
+                          ),
+                        );
+                      },
+                    ),
+                    CategoryCardWidget(
+                      text: "Classifica",
+                      description: "La tua zingara classifica",
+                      icon: Image.asset(Images.ranking),
+                      color: CustomColor.classifica,
+                      // color: CustomColor.hexToColor('#00F0FF'),
                       onTap: () async {
                         final Map<String, dynamic> results = await showDialog(
                             context: context,
@@ -169,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                               //     //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                               //     // text: "Yes",
                               //     fields: BuiltInDialog.creazione_scommesse);
-                              return BuiltInDialog.creazione_utente;
+                              return BuiltInDialog.creazione_protagonista;
                             });
                         if (results != null) {
                           print("Dati ricevuti dal dialog: $results");
@@ -183,22 +191,15 @@ class _HomePageState extends State<HomePage> {
                           print("Dialog chiuso senza inviare dati.");
                         }
                       },
-                    ),
-                    CategoryCardWidget(
-                      text: "Classifica",
-                      description: "La tua zingara classifica",
-                      icon: Image.asset(Images.ranking),
-                      color: CustomColor.classifica,
-                      // color: CustomColor.hexToColor('#00F0FF'),
-                      onTap: () {
-                        // Navigazione verso una nuova schermata
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Scommesse(),
-                          ),
-                        );
-                      },
+                      // onTap: () {
+                      //   // Navigazione verso una nuova schermata
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const Scommesse(),
+                      //     ),
+                      //   );
+                      // },
                     )
                   ]),
             ),

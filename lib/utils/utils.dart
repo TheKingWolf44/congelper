@@ -60,8 +60,8 @@ class BuiltInDialog {
   //       type: DialogFieldType.date,
   //       key: 'a'),
   // ];
-  static final CustomDialogBox creazione_utente = CustomDialogBox(
-      title: "Creazione Utente",
+  static final CustomDialogBox creazione_protagonista = CustomDialogBox(
+      title: "Nuovo Protagonista",
       color: CustomColor.protagonisti,
       fields: [
         DialogField(label: 'Nome', type: DialogFieldType.text, key: 'name'),
