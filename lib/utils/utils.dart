@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:fantafriends/customWidgets/CustomDialog.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +17,7 @@ class APIs {
   static final String baseUrl =
       "https://fantafriendss.altervista.org"; // Sostituisci con il tuo URL reale
   static final String createProtagonistaEndpoint = "$baseUrl/protagonisti/";
+  static final String getAllProtagonisti = "$baseUrl/protagonisti/";
   static final String createScommessaEndpoint = "$baseUrl/scommesse/";
 }
 

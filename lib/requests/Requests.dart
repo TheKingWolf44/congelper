@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert'; // To decode the JSON response
 
 class Requests {
-  static Future<List<Object>> get(String url) async {
+  static Future<List<dynamic>> get(String url) async {
     final response = await http.get(Uri.parse(url)); // Send GET request
 
     if (response.statusCode == 200) {
@@ -16,11 +16,11 @@ class Requests {
     }
   }
 
-  static Future<Object> post(String url, String json_body) async {
+  static Future<Object> post(String url, String jsonBody) async {
     final response = await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
-      body: json_body,
+      body: jsonBody,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

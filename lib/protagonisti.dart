@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'package:fantafriends/models/ProtagonistaModel.dart';
 import 'package:fantafriends/utils/images.dart';
+import 'package:fantafriends/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:fantafriends/requests/Requests.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'customWidgets/categoryCard.dart';
 // import 'package:twoa_group/home.dart';
@@ -29,62 +32,132 @@ class ProtagonistiWidget extends StatefulWidget {
 }
 
 class ProtagonistiPage extends State<ProtagonistiWidget> {
-  List<Map<String, dynamic>> jsonData = [
-    {"ID": 1, "Nome": "Mario", "Ruolo": "Developer"},
-    {"ID": 2, "Nome": "Giulia", "Ruolo": "Designer"},
-    {"ID": 3, "Nome": "Luca", "Ruolo": "Manager"},
-    {"ID": 4, "Nome": "Anna", "Ruolo": "Analyst"},
-    {"ID": 5, "Nome": "Paolo", "Ruolo": "Tester"},
-    {"ID": 6, "Nome": "Marco", "Ruolo": "Developer"},
-    {"ID": 7, "Nome": "Giulia", "Ruolo": "Designer"},
-    {"ID": 8, "Nome": "Luca", "Ruolo": "Manager"},
-    {"ID": 9, "Nome": "Anna", "Ruolo": "Analyst"},
-    {"ID": 10, "Nome": "Paolo", "Ruolo": "Tester"},
-    {"ID": 11, "Nome": "Mario", "Ruolo": "Developer"},
-    {"ID": 12, "Nome": "Giulia", "Ruolo": "Designer"},
-    {"ID": 13, "Nome": "Luca", "Ruolo": "Manager"},
-    {"ID": 14, "Nome": "Anna", "Ruolo": "Analyst"},
-    {"ID": 15, "Nome": "Paolo", "Ruolo": "Tester"},
-    {"ID": 16, "Nome": "Mario", "Ruolo": "Developer"},
-    {"ID": 17, "Nome": "Giulia", "Ruolo": "Designer"},
-    {"ID": 18, "Nome": "Luca", "Ruolo": "Manager"},
-    {"ID": 19, "Nome": "Anna", "Ruolo": "Analyst"},
-    {"ID": 20, "Nome": "Paolo", "Ruolo": "Tester"},
-    {"ID": 21, "Nome": "Mario", "Ruolo": "Developer"},
-    {"ID": 22, "Nome": "Giulia", "Ruolo": "Designer"},
-    {"ID": 23, "Nome": "Luca", "Ruolo": "Manager"},
-    {"ID": 24, "Nome": "Anna", "Ruolo": "Analyst"},
-    {"ID": 25, "Nome": "Paolo", "Ruolo": "Tester"},
+  List<dynamic> jsonData = [
+    {"Nome": "Mario", "Ruolo": "Developer"},
+    {"Nome": "Giulia", "Ruolo": "Designer"},
+    {"Nome": "Luca", "Ruolo": "Manager"},
+    {"Nome": "Anna", "Ruolo": "Analyst"},
+    {"Nome": "Paolo", "Ruolo": "Tester"},
+    {"Nome": "Marco", "Ruolo": "Developer"},
+    {"Nome": "Giulia", "Ruolo": "Designer"},
+    {"Nome": "Luca", "Ruolo": "Manager"},
+    {"Nome": "Anna", "Ruolo": "Analyst"},
+    {"Nome": "Paolo", "Ruolo": "Tester"},
+    {"Nome": "Mario", "Ruolo": "Developer"},
+    {"Nome": "Giulia", "Ruolo": "Designer"},
+    {"Nome": "Luca", "Ruolo": "Manager"},
+    {"Nome": "Anna", "Ruolo": "Analyst"},
+    {"Nome": "Paolo", "Ruolo": "Tester"},
+    {"Nome": "Mario", "Ruolo": "Developer"},
+    {"Nome": "Giulia", "Ruolo": "Designer"},
+    {"Nome": "Luca", "Ruolo": "Manager"},
+    {"Nome": "Anna", "Ruolo": "Analyst"},
+    {"Nome": "Paolo", "Ruolo": "Tester"},
+    {"Nome": "Mario", "Ruolo": "Developer"},
+    {"Nome": "Giulia", "Ruolo": "Designer"},
+    {"Nome": "Luca", "Ruolo": "Manager"},
+    {"Nome": "Anna", "Ruolo": "Analyst"},
+    {"Nome": "Paolo", "Ruolo": "Tester"},
   ];
+  // List<dynamic> jsonData = [
+  //   {"ID": 1, "Nome": "Mario", "Ruolo": "Developer"},
+  //   {"ID": 2, "Nome": "Giulia", "Ruolo": "Designer"},
+  //   {"ID": 3, "Nome": "Luca", "Ruolo": "Manager"},
+  //   {"ID": 4, "Nome": "Anna", "Ruolo": "Analyst"},
+  //   {"ID": 5, "Nome": "Paolo", "Ruolo": "Tester"},
+  //   {"ID": 6, "Nome": "Marco", "Ruolo": "Developer"},
+  //   {"ID": 7, "Nome": "Giulia", "Ruolo": "Designer"},
+  //   {"ID": 8, "Nome": "Luca", "Ruolo": "Manager"},
+  //   {"ID": 9, "Nome": "Anna", "Ruolo": "Analyst"},
+  //   {"ID": 10, "Nome": "Paolo", "Ruolo": "Tester"},
+  //   {"ID": 11, "Nome": "Mario", "Ruolo": "Developer"},
+  //   {"ID": 12, "Nome": "Giulia", "Ruolo": "Designer"},
+  //   {"ID": 13, "Nome": "Luca", "Ruolo": "Manager"},
+  //   {"ID": 14, "Nome": "Anna", "Ruolo": "Analyst"},
+  //   {"ID": 15, "Nome": "Paolo", "Ruolo": "Tester"},
+  //   {"ID": 16, "Nome": "Mario", "Ruolo": "Developer"},
+  //   {"ID": 17, "Nome": "Giulia", "Ruolo": "Designer"},
+  //   {"ID": 18, "Nome": "Luca", "Ruolo": "Manager"},
+  //   {"ID": 19, "Nome": "Anna", "Ruolo": "Analyst"},
+  //   {"ID": 20, "Nome": "Paolo", "Ruolo": "Tester"},
+  //   {"ID": 21, "Nome": "Mario", "Ruolo": "Developer"},
+  //   {"ID": 22, "Nome": "Giulia", "Ruolo": "Designer"},
+  //   {"ID": 23, "Nome": "Luca", "Ruolo": "Manager"},
+  //   {"ID": 24, "Nome": "Anna", "Ruolo": "Analyst"},
+  //   {"ID": 25, "Nome": "Paolo", "Ruolo": "Tester"},
+  // ];
+  late Future<List<dynamic>> _dataFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _dataFuture = Requests.get(APIs.getAllProtagonisti);
+    // Qui potresti caricare i dati reali da un'API o da un database
+    // _loadData(); // Viene chiamata ma non "attesa" qui
+  }
+
+  // Future<void> _loadData() async {
+  //   final results = await Requests.get(APIs.getAllProtagonisti);
+  //   setState(() {
+  //     jsonData = results;
+  //     _isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Tabella senza colonna ID")),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-            columns: _buildColumns(),
-            rows: _buildRows(),
-          ),
-        ),
-      ),
+    return FutureBuilder<List<dynamic>>(
+      future: _dataFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text("Errore: ${snapshot.error}");
+        } else {
+          // final lista = snapshot.data ?? [];
+          jsonData =
+              snapshot.data?.map((item) => item as dynamic).toList() ?? [];
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                columns: _buildColumns(),
+                rows: _buildRows(),
+              ),
+            ),
+          );
+        }
+      },
     );
+    // return Scaffold(
+    //   appBar: AppBar(title: Text("Tabella senza colonna ID")),
+    //   body: SingleChildScrollView(
+    //     scrollDirection: Axis.vertical,
+    //     child: SingleChildScrollView(
+    //       scrollDirection: Axis.horizontal,
+    //       child: DataTable(
+    //         columns: _buildColumns(),
+    //         rows: _buildRows(),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 
   // 1. Genera colonne escludendo l'ID
   List<DataColumn> _buildColumns() {
     if (jsonData.isEmpty) return [];
-
+    print('CHIAVI');
+    print(jsonData[0].keys);
     // Filtriamo le chiavi: prendiamo tutte tranne "ID"
     List<DataColumn> cols = jsonData[0]
         .keys
         .where((key) => key.toUpperCase() != "ID") // Nasconde l'ID
-        .map((key) => DataColumn(
+        .map<DataColumn>((key) => DataColumn(
               label: Text(key.toUpperCase(),
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
             ))
         .toList();
 
@@ -103,7 +176,8 @@ class ProtagonistiPage extends State<ProtagonistiWidget> {
 
       item.forEach((key, value) {
         if (key.toUpperCase() != "ID") {
-          cells.add(DataCell(Text(value.toString())));
+          cells.add(DataCell(
+              Text(value.toString(), style: TextStyle(color: Colors.white))));
         }
       });
 
@@ -128,12 +202,12 @@ class ProtagonistiPage extends State<ProtagonistiWidget> {
     }).toList();
   }
 
-  void _onEdit(Map<String, dynamic> item) {
+  void _onEdit(dynamic item) {
     // L'ID è ancora presente nel parametro 'item', anche se non a schermo
     print("Modifica ID: ${item['ID']}");
   }
 
-  void _onDelete(Map<String, dynamic> item) {
+  void _onDelete(dynamic item) {
     setState(() {
       jsonData.removeWhere((element) => element['ID'] == item['ID']);
     });

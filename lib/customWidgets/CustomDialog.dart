@@ -132,7 +132,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               const SizedBox(height: 20),
 
               // Generazione dinamica dei campi
-              ...widget.fields.map((field) => _buildField(field)).toList(),
+              // ...widget.fields.map((field) => _buildField(field)).toList(),
+              ...widget.fields.map((field) => _buildField(field)),
 
               const SizedBox(height: 20),
 
