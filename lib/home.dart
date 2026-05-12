@@ -181,12 +181,12 @@ class _HomePageState extends State<HomePage> {
                             });
                         if (results != null) {
                           print("Dati ricevuti dal dialog: $results");
-                          ProtagonistaModel new_user =
+                          ProtagonistaModel newUser =
                               ProtagonistaModel.fromMap(results);
                           print(
-                              'new user to json: ${jsonEncode(new_user.toJson())}');
+                              'new user to json: ${jsonEncode(newUser.toJson())}');
                           Requests.post(APIs.createProtagonistaEndpoint,
-                              jsonEncode(new_user.toJson()));
+                              jsonEncode(newUser.toJson()));
                         } else {
                           print("Dialog chiuso senza inviare dati.");
                         }

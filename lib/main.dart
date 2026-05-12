@@ -66,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
 //rgb(34, 37, 49)
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Color.fromARGB(188, 44, 45, 47),
